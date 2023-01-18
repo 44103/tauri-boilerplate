@@ -1,0 +1,30 @@
+{
+    "name": "Tauri docker",
+    "dockerComposeFile": [
+        "docker-compose.yml"
+    ],
+    "service": "tauri",
+    "remoteUser": "root",
+    "remoteEnv": {
+        "QT_X11_NO_MITSHM": "1",
+        "DISPLAY": "${localEnv:DISPLAY}",
+        "XAUTHORITY": "/tmp/.X11-unix"
+    },
+    "settings": {
+        "terminal.integrated.shell.linux": "zsh"
+    },
+    "runArgs": [
+        "--privileged",
+        "-P"
+    ],
+    "initializeCommand": "xhost + local:root",
+    "workspaceMount": "source=${localWorkspaceFolder}/workspace,target=/workdir,type=bind,consistency=delegated",
+	"workspaceFolder": "/workdir",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"rust-lang.rust-analyzer"
+			]
+		}
+	}
+}
